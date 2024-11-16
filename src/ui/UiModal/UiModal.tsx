@@ -6,6 +6,8 @@ import {
 	FloatingPortal,
 } from "@floating-ui/react";
 
+import { useWatch } from "@/hooks/useWatch";
+
 import { Dialog } from "./UiModal.Dialog";
 
 import { useModal as useDialog } from "./UiModal.hooks";
@@ -17,13 +19,31 @@ type Props = PropsWithChildren<{
 	actions?: Action[];
 	isOpened: boolean;
 	onClose: () => void;
+	onClosed?: () => void;
 	title: string;
 }>;
 
-export const UiModal: FC<Props> = ({ actions, isOpened, onClose, title }) => {
+export const UiModal: FC<Props> = ({
+	actions,
+	children,
+	isOpened,
+	onClose,
+	onClosed,
+	title,
+}) => {
 	const { context, isMounted, modalRef, getModalProps, style } = useDialog(
 		isOpened,
 		onClose,
+	);
+
+	useWatch(
+		isMounted,
+		(_, current) => {
+			if (!current) {
+				onClosed?.();
+			}
+		},
+		[onClosed],
 	);
 
 	if (!isMounted) {
@@ -41,7 +61,9 @@ export const UiModal: FC<Props> = ({ actions, isOpened, onClose, title }) => {
 						ref={modalRef}
 						style={style}
 						title={title}
-					/>
+					>
+						{children}
+					</Dialog>
 				</FloatingFocusManager>
 			</FloatingOverlay>
 		</FloatingPortal>

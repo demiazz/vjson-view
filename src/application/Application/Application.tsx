@@ -1,5 +1,6 @@
 import { FC, useCallback, useState } from "react";
 
+import { useAlert } from "@/ui/UiAlert";
 import { UiLayout } from "@/ui/UiLayout";
 import { UiModal } from "@/ui/UiModal";
 
@@ -10,13 +11,17 @@ import { Header } from "@/application/Header";
 export const Application: FC = () => {
 	const [isOpened, setIsOpened] = useState(false);
 
+	const alert = useAlert();
+
 	const header = useCallback(() => {
 		return (
 			<>
 				<Header
 					isChanged
 					isPresent
-					onDownload={() => {}}
+					onDownload={() => {
+						alert("How do you do fellow kids?");
+					}}
 					onUpload={() => {
 						setIsOpened(true);
 					}}
@@ -48,7 +53,7 @@ export const Application: FC = () => {
 				/>
 			</>
 		);
-	}, [isOpened]);
+	}, [alert, isOpened]);
 
 	return <UiLayout header={header}>Content</UiLayout>;
 };
