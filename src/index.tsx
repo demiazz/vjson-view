@@ -1,5 +1,7 @@
 import { createRoot } from "react-dom/client";
 
+import "./reset.css";
+
 const target = document.querySelector("#root");
 
 if (target == null) {
