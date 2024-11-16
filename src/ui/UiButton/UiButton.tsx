@@ -4,7 +4,7 @@ import { clsx } from "clsx/lite";
 
 import * as styles from "./UiButton.css";
 
-type Variant = keyof typeof styles.variants;
+export type Variant = keyof typeof styles.variants;
 
 type Props = PropsWithChildren<{
 	isDisabled?: boolean;

@@ -6,8 +6,13 @@ export const theme = createGlobalTheme(":root", {
 	},
 
 	colors: {
+		background: {
+			primary: "white",
+		},
+
 		content: {
 			primary: "#1a1a1a",
+			secondary: "#696969",
 			contrast: "white",
 			disabled: "#b3b3b3",
 		},

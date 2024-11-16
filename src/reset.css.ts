@@ -1,5 +1,7 @@
 import { resetStyle } from "@/helpers/style";
 
+import { theme } from "@/theme.css";
+
 resetStyle("*, :after, :before", {
 	// NOTE: Change from `box-sizing: content-box` so that `width` is not affected by `padding` or `border`.
 	boxSizing: "border-box",
@@ -24,8 +26,8 @@ resetStyle(":where(body)", {
 	// NOTE: Remove the margin in all browsers.
 	margin: "0",
 	// NOTE: As a best practice, apply a default `body-background`.
-	backgroundColor: "white",
-	color: "rgba(0, 0, 0, 0.85)",
+	backgroundColor: theme.colors.background.primary,
+	color: theme.colors.content.primary,
 	fontFamily: '"Source Code Pro Variable", monospace',
 	fontWeight: 500,
 	fontStyle: "normal",

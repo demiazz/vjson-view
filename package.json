@@ -21,6 +21,7 @@
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
+		"@svgr/rollup": "^8.1.0",
 		"@tabula/eslint-config": "^1.0.0-next.0",
 		"@tabula/typescript-config": "^0.3.3",
 		"@types/react": "^18.3.12",

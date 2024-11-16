@@ -127,13 +127,6 @@ export default defineConfig({
 					functions: "ignore",
 				},
 			],
-			"arrow-parens": [
-				"error",
-				"as-needed",
-				{
-					requireForBlockBody: true,
-				},
-			],
 			"array-callback-return": "warn",
 			"dot-location": ["warn", "property"],
 			eqeqeq: ["warn", "smart"],
