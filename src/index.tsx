@@ -1,5 +1,7 @@
 import { createRoot } from "react-dom/client";
 
+import { Application } from "@/Application";
+
 import "./reset.css";
 
 const target = document.querySelector("#root");
@@ -10,4 +12,4 @@ if (target == null) {
 
 const root = createRoot(target);
 
-root.render(<h1>vjson-view</h1>);
+root.render(<Application />);
