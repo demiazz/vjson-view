@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from "react";
 
-import { useAlert } from "@/ui/UiAlert";
+import { useConfirm } from "@/ui/UiConfirmation";
 import { UiLayout } from "@/ui/UiLayout";
 import { UiModal } from "@/ui/UiModal";
 
@@ -11,7 +11,7 @@ import { Header } from "@/application/Header";
 export const Application: FC = () => {
 	const [isOpened, setIsOpened] = useState(false);
 
-	const alert = useAlert();
+	const confirm = useConfirm();
 
 	const header = useCallback(() => {
 		return (
@@ -20,7 +20,18 @@ export const Application: FC = () => {
 					isChanged
 					isPresent
 					onDownload={() => {
-						alert("How do you do fellow kids?");
+						confirm({
+							title: "Question",
+
+							message: "How do you do fellow kids?",
+
+							okLabel: "Good",
+							cancelLabel: "Bad",
+						})
+							.then(console.log)
+							.catch((error: unknown) => {
+								console.error(error);
+							});
 					}}
 					onUpload={() => {
 						setIsOpened(true);
@@ -53,7 +64,7 @@ export const Application: FC = () => {
 				/>
 			</>
 		);
-	}, [alert, isOpened]);
+	}, [confirm, isOpened]);
 
 	return <UiLayout header={header}>Content</UiLayout>;
 };

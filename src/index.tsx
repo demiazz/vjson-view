@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 
 import { UiAlertProvider } from "@/ui/UiAlert";
+import { UiConfirmationProvider } from "@/ui/UiConfirmation";
 
 import { Application } from "@/application/Application";
 
@@ -14,6 +15,8 @@ const root = createRoot(target);
 
 root.render(
 	<UiAlertProvider>
-		<Application />
+		<UiConfirmationProvider>
+			<Application />
+		</UiConfirmationProvider>
 	</UiAlertProvider>,
 );
