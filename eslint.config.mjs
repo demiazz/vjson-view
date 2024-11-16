@@ -304,7 +304,6 @@ export default defineConfig({
 			"no-unused-vars": "off",
 			"no-useless-constructor": "off",
 			semi: 2,
-			indent: ["error", "tab"],
 			"operator-linebreak": 0,
 			"no-tabs": 0,
 			"no-param-reassign": [

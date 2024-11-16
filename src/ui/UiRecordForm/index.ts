@@ -1,0 +1,1 @@
+export { UiRecordForm } from "./UiRecordForm";
