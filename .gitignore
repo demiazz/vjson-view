@@ -1,0 +1,8 @@
+# Ignores macOS related Finder's cache files.
+.DS_Store
+
+# Ignores dist folder which created by the `vite build`.
+dist
+
+# Ignores `node_modules`.
+node_modules

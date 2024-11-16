@@ -1,0 +1,34 @@
+{
+	"name": "vjson-view",
+	"private": "true",
+	"type": "module",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"start": "vite dev",
+		"build": "vite build",
+		"lint": "eslint src"
+	},
+	"keywords": [],
+	"author": "Alexey Plutalov",
+	"license": "ISC",
+	"dependencies": {
+		"@tanstack/react-virtual": "^3.10.9",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"devDependencies": {
+		"@tabula/eslint-config": "^1.0.0-next.0",
+		"@tabula/typescript-config": "^0.3.3",
+		"@types/react": "^18.3.12",
+		"@types/react-dom": "^18.3.1",
+		"@vanilla-extract/css": "^1.16.0",
+		"@vanilla-extract/vite-plugin": "^4.0.17",
+		"@vitejs/plugin-react": "^4.3.3",
+		"eslint": "9.12.0",
+		"lefthook": "^1.8.2",
+		"prettier": "^3.3.3",
+		"typescript": "^5.6.3",
+		"vite": "^5.4.11"
+	}
+}
