@@ -1,6 +1,10 @@
 import { createGlobalTheme } from "@vanilla-extract/css";
 
 export const theme = createGlobalTheme(":root", {
+	sizes: {
+		maxWidth: "1000px",
+	},
+
 	colors: {
 		content: {
 			primary: "#1a1a1a",

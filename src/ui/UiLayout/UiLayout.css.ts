@@ -1,6 +1,6 @@
 import { uiStyle } from "@/helpers/style";
 
-const width = "1000px";
+import { theme } from "@/theme.css";
 
 export const root = uiStyle({
 	position: "relative",
@@ -24,9 +24,9 @@ export const header = uiStyle([
 	{
 		flex: "0 0 auto",
 
-		minWidth: width,
+		minWidth: theme.sizes.maxWidth,
 
-		padding: `0 calc((100% - ${width}) / 2)`,
+		padding: `0 calc((100% - ${theme.sizes.maxWidth}) / 2)`,
 
 		borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
 		boxShadow: "0 0 6px 0px rgba(0, 0, 0, 0.1)",
@@ -38,6 +38,6 @@ export const content = uiStyle([
 	{
 		flex: "1 1 auto",
 
-		width,
+		width: theme.sizes.maxWidth,
 	},
 ]);
