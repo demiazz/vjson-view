@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, RefObject } from "react";
 
 import {
 	FloatingFocusManager,
@@ -17,6 +17,7 @@ import * as styles from "./UiModal.css";
 
 type Props = PropsWithChildren<{
 	actions?: Action[];
+	initialFocus?: RefObject<HTMLElement>;
 	isOpened: boolean;
 	onClose: () => void;
 	onClosed?: () => void;
@@ -26,6 +27,7 @@ type Props = PropsWithChildren<{
 export const UiModal: FC<Props> = ({
 	actions,
 	children,
+	initialFocus,
 	isOpened,
 	onClose,
 	onClosed,
@@ -53,7 +55,11 @@ export const UiModal: FC<Props> = ({
 	return (
 		<FloatingPortal>
 			<FloatingOverlay className={styles.overlay} lockScroll style={style}>
-				<FloatingFocusManager context={context} modal>
+				<FloatingFocusManager
+					context={context}
+					initialFocus={initialFocus}
+					modal
+				>
 					<Dialog
 						actions={actions}
 						getProps={getModalProps}

@@ -29,8 +29,13 @@ export const Dialog = forwardRef<HTMLDivElement, Props>(
 				<main className={styles.body}>{children}</main>
 				{actions.length > 0 && (
 					<footer className={styles.footer}>
-						{actions.map(({ id, label, onAction, variant }) => (
-							<UiButton key={id} onClick={onAction} variant={variant}>
+						{actions.map(({ id, label, onAction, ref: actionRef, variant }) => (
+							<UiButton
+								key={id}
+								onClick={onAction}
+								ref={actionRef}
+								variant={variant}
+							>
 								{label}
 							</UiButton>
 						))}

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { RefObject, useCallback, useMemo, useRef, useState } from "react";
 
 import { useWatch } from "@/hooks/useWatch";
 
@@ -14,9 +14,13 @@ type Result = {
 
 	onClose: () => void;
 	onClosed: () => void;
+
+	initialFocusRef: RefObject<HTMLElement>;
 };
 
 export function useModal(): Result {
+	const initialFocusRef = useRef<HTMLButtonElement>(null);
+
 	const { message, onMessage } = useContext();
 
 	const [isOpened, setIsOpened] = useState(message != null);
@@ -48,9 +52,11 @@ export function useModal(): Result {
 
 				label: "OK",
 				variant: "danger",
+
+				ref: initialFocusRef,
 			},
 		],
-		[handleClose],
+		[handleClose, initialFocusRef],
 	);
 
 	return {
@@ -61,5 +67,7 @@ export function useModal(): Result {
 
 		onClose: handleClose,
 		onClosed: handleClosed,
+
+		initialFocusRef,
 	};
 }

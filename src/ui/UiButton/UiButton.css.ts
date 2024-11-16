@@ -79,6 +79,8 @@ export const root = uiStyle({
 
 	selectors: {
 		"&:focus": {
+			background: vars.background.hover,
+
 			outlineStyle: "solid",
 			outlineColor: vars.outline,
 			outlineOffset: "0",

@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import { forwardRef, PropsWithChildren } from "react";
 
 import { clsx } from "clsx/lite";
 
@@ -14,20 +14,22 @@ type Props = PropsWithChildren<{
 	variant: Variant;
 }>;
 
-export const UiButton: FC<Props> = ({
-	children,
-	isDisabled,
-	onClick,
-	variant,
-}) => {
-	return (
-		<button
-			className={clsx(styles.root, styles.variants[variant])}
-			disabled={isDisabled}
-			onClick={onClick}
-			type="button"
-		>
-			{children}
-		</button>
-	);
-};
+export const UiButton = forwardRef<HTMLButtonElement, Props>(
+	({ children, isDisabled, onClick, variant }, ref) => {
+		return (
+			<button
+				className={clsx(styles.root, styles.variants[variant])}
+				disabled={isDisabled}
+				onClick={onClick}
+				ref={ref}
+				type="button"
+			>
+				{children}
+			</button>
+		);
+	},
+);
+
+if (import.meta.env.DEV) {
+	UiButton.displayName = "UiButton";
+}
