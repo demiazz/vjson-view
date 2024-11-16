@@ -6,6 +6,8 @@ import { Field } from "./UiRecordForm.Field";
 import { useModal } from "./UiRecordForm.hooks";
 import { InputRecord } from "./UiRecordForm.types";
 
+import * as styles from "./UiRecordForm.css";
+
 type Props = {
 	input: InputRecord;
 
@@ -25,15 +27,17 @@ export const UiRecordForm: FC<Props> = ({ input, onCancel, onSubmit }) => {
 			onClosed={onClosed}
 			title="Edit record"
 		>
-			{fields != null &&
-				Object.entries(fields).map(([name, field]) => (
-					<Field
-						key={name}
-						name={name}
-						field={field}
-						onChange={onChangeField}
-					/>
-				))}
+			<div className={styles.root}>
+				{fields != null &&
+					Object.entries(fields).map(([name, field]) => (
+						<Field
+							key={name}
+							name={name}
+							field={field}
+							onChange={onChangeField}
+						/>
+					))}
+			</div>
 		</UiModal>
 	);
 };

@@ -5,6 +5,8 @@ import { Container } from "./UiRecordForm.Container";
 import { DateTimeField, ChangeFieldHandler } from "./UiRecordForm.types";
 import { parseDate } from "./UiRecordForm.helpers";
 
+import * as styles from "./UiRecordForm.css";
+
 function toString(date: Date): string {
 	return date.toISOString().slice(0, 19);
 }
@@ -37,6 +39,7 @@ export const DateTime: FC<Props> = ({ name, field, onChange }) => {
 	return (
 		<Container name={name}>
 			<input
+				className={styles.control.input}
 				onBlur={handleBlur}
 				onChange={handleChange}
 				step="1"

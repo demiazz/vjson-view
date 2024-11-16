@@ -1,8 +1,9 @@
 import { ChangeEventHandler, FC, FocusEventHandler, useState } from "react";
 
 import { Container } from "./UiRecordForm.Container";
-
 import { NumberField, ChangeFieldHandler } from "./UiRecordForm.types";
+
+import * as styles from "./UiRecordForm.css";
 
 type Props = {
 	name: string;
@@ -30,6 +31,7 @@ export const Numeric: FC<Props> = ({ name, field, onChange }) => {
 	return (
 		<Container name={name}>
 			<input
+				className={styles.control.input}
 				onBlur={handleBlur}
 				onChange={handleChange}
 				type="number"

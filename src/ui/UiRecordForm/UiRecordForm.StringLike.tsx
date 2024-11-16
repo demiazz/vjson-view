@@ -3,6 +3,8 @@ import { ChangeEventHandler, FC, FocusEventHandler, useState } from "react";
 import { Container } from "./UiRecordForm.Container";
 import { ChangeFieldHandler, StringLikeField } from "./UiRecordForm.types";
 
+import * as styles from "./UiRecordForm.css";
+
 type Props<Field extends StringLikeField = StringLikeField> = {
 	name: string;
 	field: Field;
@@ -31,9 +33,16 @@ export const StringLike: FC<Props> = ({
 	return (
 		<Container name={name}>
 			{field.type === "text" ? (
-				<textarea onBlur={handleBlur} onChange={handleChange} value={value} />
+				<textarea
+					className={styles.control.textarea}
+					onBlur={handleBlur}
+					onChange={handleChange}
+					rows={5}
+					value={value}
+				/>
 			) : (
 				<input
+					className={styles.control.input}
 					onBlur={handleBlur}
 					onChange={handleChange}
 					type={field.type === "string" ? "text" : "email"}

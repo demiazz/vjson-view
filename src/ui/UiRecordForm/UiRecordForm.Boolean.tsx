@@ -1,8 +1,9 @@
 import { ChangeEventHandler, FC } from "react";
 
 import { Container } from "./UiRecordForm.Container";
-
 import { BooleanField, ChangeFieldHandler } from "./UiRecordForm.types";
+
+import * as styles from "./UiRecordForm.css";
 
 type Props = {
 	name: string;
@@ -17,7 +18,12 @@ export const Boolean: FC<Props> = ({ name, field, onChange }) => {
 
 	return (
 		<Container name={name}>
-			<input checked={field.value} onChange={handleChange} type="checkbox" />
+			<input
+				className={styles.control.checkbox}
+				checked={field.value}
+				onChange={handleChange}
+				type="checkbox"
+			/>
 		</Container>
 	);
 };
