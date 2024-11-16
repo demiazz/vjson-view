@@ -9,6 +9,8 @@ export const root = style({
 	alignItems: "center",
 
 	height: "60px",
+
+	padding: "0 8px",
 });
 
 const blink = keyframes({

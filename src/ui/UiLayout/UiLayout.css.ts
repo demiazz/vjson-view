@@ -39,5 +39,7 @@ export const content = uiStyle([
 		flex: "1 1 auto",
 
 		width: theme.sizes.maxWidth,
+
+		overflow: "auto",
 	},
 ]);
