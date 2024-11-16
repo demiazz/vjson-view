@@ -1,8 +1,6 @@
 import { createRoot } from "react-dom/client";
 
-import { Application } from "@/Application";
-
-import "./reset.css";
+import { Application } from "@/application/Application";
 
 const target = document.querySelector("#root");
 

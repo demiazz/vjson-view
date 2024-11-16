@@ -66,7 +66,6 @@ export default defineConfig({
 					"react/jsx-no-useless-fragment": "warn",
 					"react-hooks/rules-of-hooks": "error",
 					"react-hooks/exhaustive-deps": "warn",
-					"react/jsx-max-props-per-line": 1,
 					"react/jsx-props-no-spreading": "off",
 					"react/jsx-first-prop-new-line": ["error", "multiline"],
 					"react/jsx-indent": ["error", "tab"],

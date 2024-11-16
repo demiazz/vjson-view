@@ -16,7 +16,7 @@ export function resetStyle(selector: string, styles: GlobalStyleRule): void {
 type ClassNames = string | ClassNames[];
 type ComplexStyleRule = StyleRule | Array<StyleRule | ClassNames>;
 
-function wrap(styles: StyleRule): StyleRule {
+export function wrapUiStyle(styles: StyleRule): StyleRule {
 	return {
 		"@layer": {
 			ui: styles,
@@ -26,7 +26,7 @@ function wrap(styles: StyleRule): StyleRule {
 
 export function uiStyle(complex: ComplexStyleRule): string {
 	if (!Array.isArray(complex)) {
-		return style(wrap(complex));
+		return style(wrapUiStyle(complex));
 	}
 
 	const wrapped = complex.map((it) => {
@@ -34,7 +34,7 @@ export function uiStyle(complex: ComplexStyleRule): string {
 			return it;
 		}
 
-		return wrap(it);
+		return wrapUiStyle(it);
 	});
 
 	return style(wrapped);

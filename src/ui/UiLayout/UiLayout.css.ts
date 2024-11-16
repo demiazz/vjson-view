@@ -1,5 +1,7 @@
 import { uiStyle } from "@/helpers/style";
 
+const width = "1000px";
+
 export const root = uiStyle({
 	position: "relative",
 
@@ -8,14 +10,9 @@ export const root = uiStyle({
 	justifyContent: "stretch",
 	alignItems: "center",
 
-	width: "1000px",
 	height: "100vh",
 
 	margin: "0 auto",
-
-	borderWidth: "0px 1px 0px 1px",
-	borderStyle: "solid",
-	borderColor: "rgba(0, 0, 0, 0.1)",
 });
 
 const section = uiStyle({
@@ -26,6 +23,13 @@ export const header = uiStyle([
 	section,
 	{
 		flex: "0 0 auto",
+
+		minWidth: width,
+
+		padding: `0 calc((100% - ${width}) / 2)`,
+
+		borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
+		boxShadow: "0 0 6px 0px rgba(0, 0, 0, 0.1)",
 	},
 ]);
 
@@ -33,5 +37,7 @@ export const content = uiStyle([
 	section,
 	{
 		flex: "1 1 auto",
+
+		width,
 	},
 ]);

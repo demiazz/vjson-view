@@ -9,7 +9,7 @@ type Props = PropsWithChildren<{
 export const UiLayout: FC<Props> = ({ children, header }) => {
 	return (
 		<div className={styles.root}>
-			<header className={styles.header}>{header()}</header>
+			<div className={styles.header}>{header()}</div>
 			<main className={styles.content}>{children}</main>
 		</div>
 	);
