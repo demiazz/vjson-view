@@ -13,6 +13,7 @@
 	"author": "Alexey Plutalov",
 	"license": "ISC",
 	"dependencies": {
+		"@floating-ui/react": "^0.26.28",
 		"@fontsource-variable/source-code-pro": "^5.1.0",
 		"@tanstack/react-virtual": "^3.10.9",
 		"clsx": "^2.1.1",
