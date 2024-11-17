@@ -2,6 +2,7 @@ import { createGlobalTheme } from "@vanilla-extract/css";
 
 export const theme = createGlobalTheme(":root", {
 	sizes: {
+		font: "14px",
 		maxWidth: "1000px",
 	},
 

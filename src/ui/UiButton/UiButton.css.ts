@@ -69,6 +69,7 @@ export const root = uiStyle({
 	color: vars.color,
 
 	fontFamily: "inherit",
+	fontSize: theme.sizes.font,
 
 	whiteSpace: "nowrap",
 	userSelect: "none",
@@ -81,9 +82,8 @@ export const root = uiStyle({
 		"&:focus": {
 			background: vars.background.hover,
 
-			outlineStyle: "solid",
-			outlineColor: vars.outline,
 			outlineOffset: "0",
+			outline: `2px solid ${vars.outline}`,
 		},
 
 		"&:hover": {
