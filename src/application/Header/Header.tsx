@@ -33,7 +33,7 @@ export const Header: FC<Props> = ({
 					icon={DownloadIcon}
 					isDisabled={!isPresent}
 					onClick={onDownload}
-					variant="danger"
+					variant="primary"
 				>
 					Download
 				</UiButton>
