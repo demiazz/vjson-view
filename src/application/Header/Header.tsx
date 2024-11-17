@@ -1,5 +1,8 @@
 import { FC } from "react";
 
+import { ReactComponent as DownloadIcon } from "@/icons/download.svg";
+import { ReactComponent as UploadIcon } from "@/icons/upload.svg";
+
 import { UiButton } from "@/ui/UiButton";
 import { UiIndicator } from "@/ui/UiIndicator";
 
@@ -23,10 +26,15 @@ export const Header: FC<Props> = ({
 		<div className={styles.root}>
 			{isChanged && <UiIndicator>Has changes</UiIndicator>}
 			<div className={styles.actions}>
-				<UiButton onClick={onUpload} variant="primary">
+				<UiButton icon={UploadIcon} onClick={onUpload} variant="primary">
 					Upload
 				</UiButton>
-				<UiButton isDisabled={!isPresent} onClick={onDownload} variant="danger">
+				<UiButton
+					icon={DownloadIcon}
+					isDisabled={!isPresent}
+					onClick={onDownload}
+					variant="danger"
+				>
 					Download
 				</UiButton>
 			</div>

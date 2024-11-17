@@ -34,17 +34,20 @@ export const Dialog = forwardRef<HTMLDivElement, Props>(
 				<main className={styles.body}>{children}</main>
 				{actions.length > 0 && (
 					<footer className={styles.footer}>
-						{actions.map(({ id, label, onAction, ref: actionRef, variant }) => (
-							<UiButton
-								key={id}
-								onClick={onAction}
-								ref={actionRef}
-								tabIndex={0}
-								variant={variant}
-							>
-								{label}
-							</UiButton>
-						))}
+						{actions.map(
+							({ id, icon, label, onAction, ref: actionRef, variant }) => (
+								<UiButton
+									icon={icon}
+									key={id}
+									onClick={onAction}
+									ref={actionRef}
+									tabIndex={0}
+									variant={variant}
+								>
+									{label}
+								</UiButton>
+							),
+						)}
 					</footer>
 				)}
 			</div>

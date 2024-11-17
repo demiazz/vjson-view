@@ -1,4 +1,4 @@
-import { forwardRef, PropsWithChildren } from "react";
+import { ComponentType, forwardRef, PropsWithChildren } from "react";
 
 import { clsx } from "clsx/lite";
 
@@ -7,6 +7,7 @@ import * as styles from "./UiButton.css";
 export type Variant = keyof typeof styles.variants;
 
 type Props = PropsWithChildren<{
+	icon?: ComponentType;
 	isDisabled?: boolean;
 	onClick: () => void;
 	tabIndex?: number;
@@ -14,7 +15,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export const UiButton = forwardRef<HTMLButtonElement, Props>(
-	({ children, isDisabled, onClick, tabIndex, variant }, ref) => {
+	({ children, icon: Icon, isDisabled, onClick, tabIndex, variant }, ref) => {
 		return (
 			<button
 				className={clsx(styles.root, styles.variants[variant])}
@@ -24,6 +25,7 @@ export const UiButton = forwardRef<HTMLButtonElement, Props>(
 				tabIndex={tabIndex}
 				type="button"
 			>
+				{Icon != null && <Icon />}
 				{children}
 			</button>
 		);

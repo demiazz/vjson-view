@@ -2,6 +2,8 @@ import { CSSProperties, FC, ReactNode } from "react";
 
 import { isScalar } from "@/helpers/isScalar";
 
+import { ReactComponent as EditIcon } from "@/icons/edit.svg";
+
 import { UiButton } from "@/ui/UiButton";
 
 import * as styles from "./UiRecord.css";
@@ -25,7 +27,7 @@ export const UiRecord: FC<Props> = ({ index, onEdit, record, style }) => {
 	fields.push(
 		<div className={styles.header} key="id">
 			<div className={styles.id}>{id}</div>
-			<UiButton onClick={handleEdit} variant="primary">
+			<UiButton icon={EditIcon} onClick={handleEdit} variant="primary">
 				Edit
 			</UiButton>
 		</div>,

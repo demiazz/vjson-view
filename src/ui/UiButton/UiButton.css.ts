@@ -54,10 +54,13 @@ export const variants = styleVariants(
 );
 
 export const root = uiStyle({
-	display: "block",
+	display: "flex",
+	flexDirection: "row",
+	justifyContent: "center",
+	alignItems: "center",
+	gap: "8px",
 
 	height: "32px",
-	minWidth: "100px",
 
 	padding: "0 12px",
 

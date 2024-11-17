@@ -9,6 +9,8 @@ import {
 
 import { useWatch } from "@/hooks/useWatch";
 
+import { ReactComponent as SaveIcon } from "@/icons/save.svg";
+
 import { useConfirm } from "@/ui/UiConfirmation";
 import { UiModalAction } from "@/ui/UiModal";
 
@@ -112,9 +114,10 @@ export function useModal({ record, onCancel, onSubmit }: Options): Result {
 	const actions: UiModalAction[] = useMemo(
 		() => [
 			{
+				icon: SaveIcon,
 				id: "save",
-				onAction: handleSubmit,
 				label: "Save",
+				onAction: handleSubmit,
 				variant: "primary",
 			},
 			{
