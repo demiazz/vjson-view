@@ -11,7 +11,7 @@ export class JsonView {
 		return this.file.name;
 	}
 
-	public get content(): JsonValue {
+	public get content(): JsonRecord[] {
 		return this.file.content;
 	}
 
