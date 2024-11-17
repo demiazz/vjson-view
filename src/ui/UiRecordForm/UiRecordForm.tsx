@@ -15,8 +15,15 @@ type Props = {
 };
 
 export const UiRecordForm: FC<Props> = ({ record, onCancel, onSubmit }) => {
-	const { actions, isOpened, onClose, onClosed, fields, onChangeField } =
-		useModal({ record, onCancel, onSubmit });
+	const {
+		actions,
+		initialFocusRef,
+		isOpened,
+		onClose,
+		onClosed,
+		fields,
+		onChangeField,
+	} = useModal({ record, onCancel, onSubmit });
 
 	return (
 		<UiModal
@@ -25,15 +32,17 @@ export const UiRecordForm: FC<Props> = ({ record, onCancel, onSubmit }) => {
 			onClose={onClose}
 			onClosed={onClosed}
 			title="Edit record"
+			initialFocus={initialFocusRef}
 		>
 			<div className={styles.root}>
 				{fields != null &&
-					Object.entries(fields).map(([name, field]) => (
+					Object.entries(fields).map(([name, field], index) => (
 						<Field
 							key={name}
 							name={name}
 							field={field}
 							onChange={onChangeField}
+							ref={index === 0 ? initialFocusRef : undefined}
 						/>
 					))}
 			</div>

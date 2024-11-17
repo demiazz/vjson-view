@@ -1,4 +1,11 @@
-import { useMemo, useCallback, useState, useEffect } from "react";
+import {
+	useMemo,
+	useCallback,
+	useState,
+	useEffect,
+	RefObject,
+	useRef,
+} from "react";
 
 import { useWatch } from "@/hooks/useWatch";
 
@@ -25,9 +32,13 @@ type Result = {
 
 	onClose: () => void;
 	onClosed: () => void;
+
+	initialFocusRef: RefObject<HTMLInputElement | HTMLTextAreaElement>;
 };
 
 export function useModal({ record, onCancel, onSubmit }: Options): Result {
+	const initialFocusRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+
 	const confirm = useConfirm();
 
 	const [fields, setFields] = useState<Maybe<Fields>>(() =>
@@ -126,6 +137,8 @@ export function useModal({ record, onCancel, onSubmit }: Options): Result {
 		onChangeField: setField,
 		onClose: handleCancel,
 		onClosed: handleClosed,
+
+		initialFocusRef,
 	};
 	/* eslint-enable */
 }

@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { forwardRef, Ref } from "react";
 
 import { Boolean } from "./UiRecordForm.Boolean";
 import { DateTime } from "./UiRecordForm.DateTime";
@@ -13,24 +13,49 @@ type Props = {
 	onChange: ChangeFieldHandler;
 };
 
-export const Field: FC<Props> = memo(({ name, field, onChange }) => {
-	switch (field.type) {
-		case "boolean": {
-			return <Boolean name={name} field={field} onChange={onChange} />;
+export const Field = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>(
+	({ name, field, onChange }, ref) => {
+		switch (field.type) {
+			case "boolean": {
+				return (
+					<Boolean
+						name={name}
+						field={field}
+						onChange={onChange}
+						ref={ref as Ref<HTMLInputElement>}
+					/>
+				);
+			}
+			case "datetime": {
+				return (
+					<DateTime
+						name={name}
+						field={field}
+						onChange={onChange}
+						ref={ref as Ref<HTMLInputElement>}
+					/>
+				);
+			}
+			case "number": {
+				return (
+					<Numeric
+						name={name}
+						field={field}
+						onChange={onChange}
+						ref={ref as Ref<HTMLInputElement>}
+					/>
+				);
+			}
+			case "email":
+			case "string":
+			case "text": {
+				return (
+					<StringLike name={name} field={field} onChange={onChange} ref={ref} />
+				);
+			}
 		}
-		case "datetime": {
-			return <DateTime name={name} field={field} onChange={onChange} />;
-		}
-		case "number": {
-			return <Numeric name={name} field={field} onChange={onChange} />;
-		}
-		case "email":
-		case "string":
-		case "text": {
-			return <StringLike name={name} field={field} onChange={onChange} />;
-		}
-	}
-});
+	},
+);
 
 if (import.meta.env.DEV) {
 	Field.displayName = "UiRecordForm(Field)";

@@ -1,4 +1,9 @@
-import { ChangeEventHandler, FC, FocusEventHandler, useState } from "react";
+import {
+	ChangeEventHandler,
+	FocusEventHandler,
+	forwardRef,
+	useState,
+} from "react";
 
 import { Container } from "./UiRecordForm.Container";
 
@@ -17,35 +22,43 @@ type Props = {
 	onChange: ChangeFieldHandler<DateTimeField>;
 };
 
-export const DateTime: FC<Props> = ({ name, field, onChange }) => {
-	const [value, setValue] = useState(() => toString(field.value));
+export const DateTime = forwardRef<HTMLInputElement, Props>(
+	({ name, field, onChange }, ref) => {
+		const [value, setValue] = useState(() => toString(field.value));
 
-	const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-		setValue(event.target.value);
-	};
+		const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+			setValue(event.target.value);
+		};
 
-	const handleBlur: FocusEventHandler = () => {
-		if (toString(field.value) !== value) {
-			const next = parseDate(value);
+		const handleBlur: FocusEventHandler = () => {
+			if (toString(field.value) !== value) {
+				const next = parseDate(value);
 
-			if (next == null) {
-				return;
+				if (next == null) {
+					return;
+				}
+
+				onChange(name, { ...field, value: next });
 			}
+		};
 
-			onChange(name, { ...field, value: next });
-		}
-	};
+		return (
+			<Container name={name}>
+				<input
+					className={styles.control.input}
+					onBlur={handleBlur}
+					onChange={handleChange}
+					ref={ref}
+					step="1"
+					tabIndex={0}
+					type="datetime-local"
+					value={value}
+				/>
+			</Container>
+		);
+	},
+);
 
-	return (
-		<Container name={name}>
-			<input
-				className={styles.control.input}
-				onBlur={handleBlur}
-				onChange={handleChange}
-				step="1"
-				type="datetime-local"
-				value={value}
-			/>
-		</Container>
-	);
-};
+if (import.meta.env.DEV) {
+	DateTime.displayName = "UiRecordForm(DateTime)";
+}

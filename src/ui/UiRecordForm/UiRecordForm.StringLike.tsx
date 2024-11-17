@@ -1,4 +1,10 @@
-import { ChangeEventHandler, FC, FocusEventHandler, useState } from "react";
+import {
+	ChangeEventHandler,
+	FocusEventHandler,
+	forwardRef,
+	Ref,
+	useState,
+} from "react";
 
 import { Container } from "./UiRecordForm.Container";
 import { ChangeFieldHandler, StringLikeField } from "./UiRecordForm.types";
@@ -11,11 +17,10 @@ type Props<Field extends StringLikeField = StringLikeField> = {
 	onChange: ChangeFieldHandler<Field>;
 };
 
-export const StringLike: FC<Props> = ({
-	name,
-	field,
-	onChange: onChangeField,
-}) => {
+export const StringLike = forwardRef<
+	HTMLInputElement | HTMLTextAreaElement,
+	Props
+>(({ name, field, onChange: onChangeField }, ref) => {
 	const [value, setValue] = useState(field.value);
 
 	const handleChange: ChangeEventHandler<
@@ -37,7 +42,9 @@ export const StringLike: FC<Props> = ({
 					className={styles.control.textarea}
 					onBlur={handleBlur}
 					onChange={handleChange}
+					ref={ref as Ref<HTMLTextAreaElement>}
 					rows={5}
+					tabIndex={0}
 					value={value}
 				/>
 			) : (
@@ -45,10 +52,16 @@ export const StringLike: FC<Props> = ({
 					className={styles.control.input}
 					onBlur={handleBlur}
 					onChange={handleChange}
+					tabIndex={0}
+					ref={ref as Ref<HTMLInputElement>}
 					type={field.type === "string" ? "text" : "email"}
 					value={value}
 				/>
 			)}
 		</Container>
 	);
-};
+});
+
+if (import.meta.env.DEV) {
+	StringLike.displayName = "UiRecordForm(StringLike)";
+}

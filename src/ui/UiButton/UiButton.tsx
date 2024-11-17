@@ -8,20 +8,20 @@ export type Variant = keyof typeof styles.variants;
 
 type Props = PropsWithChildren<{
 	isDisabled?: boolean;
-
 	onClick: () => void;
-
+	tabIndex?: number;
 	variant: Variant;
 }>;
 
 export const UiButton = forwardRef<HTMLButtonElement, Props>(
-	({ children, isDisabled, onClick, variant }, ref) => {
+	({ children, isDisabled, onClick, tabIndex, variant }, ref) => {
 		return (
 			<button
 				className={clsx(styles.root, styles.variants[variant])}
 				disabled={isDisabled}
 				onClick={onClick}
 				ref={ref}
+				tabIndex={tabIndex}
 				type="button"
 			>
 				{children}

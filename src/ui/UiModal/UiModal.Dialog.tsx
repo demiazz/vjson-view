@@ -22,7 +22,12 @@ export const Dialog = forwardRef<HTMLDivElement, Props>(
 			<div className={styles.root} ref={ref} style={style} {...getProps()}>
 				<header className={styles.header}>
 					<h1 className={styles.title}>{title}</h1>
-					<button className={styles.close} onClick={onClose} type="button">
+					<button
+						className={styles.close}
+						onClick={onClose}
+						tabIndex={0}
+						type="button"
+					>
 						<CloseIcon />
 					</button>
 				</header>
@@ -34,6 +39,7 @@ export const Dialog = forwardRef<HTMLDivElement, Props>(
 								key={id}
 								onClick={onAction}
 								ref={actionRef}
+								tabIndex={0}
 								variant={variant}
 							>
 								{label}
