@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode } from "react";
+import { CSSProperties, FC, ReactNode } from "react";
 
 import { isScalar } from "@/helpers/isScalar";
 
@@ -10,9 +10,10 @@ type Props = {
 	index: number;
 	onEdit: (index: number) => void;
 	record: JsonRecord;
+	style?: CSSProperties;
 };
 
-export const UiRecord: FC<Props> = memo(({ index, onEdit, record }) => {
+export const UiRecord: FC<Props> = ({ index, onEdit, record, style }) => {
 	const handleEdit = () => {
 		onEdit(index);
 	};
@@ -43,9 +44,9 @@ export const UiRecord: FC<Props> = memo(({ index, onEdit, record }) => {
 		);
 	}
 
-	return <div className={styles.root}>{fields}</div>;
-});
-
-if (import.meta.env.DEV) {
-	UiRecord.displayName = "UiRecord";
-}
+	return (
+		<div className={styles.root} style={style}>
+			{fields}
+		</div>
+	);
+};

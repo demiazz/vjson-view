@@ -1,6 +1,7 @@
 import { uiStyle } from "@/helpers/style";
 
 import { theme } from "@/theme.css";
+import { createThemeContract } from "@vanilla-extract/css";
 
 export const root = uiStyle({
 	position: "relative",
@@ -36,6 +37,8 @@ export const header = uiStyle([
 export const content = uiStyle([
 	section,
 	{
+		position: "relative",
+
 		flex: "1 1 auto",
 
 		width: theme.sizes.maxWidth,
@@ -43,3 +46,17 @@ export const content = uiStyle([
 		overflow: "auto",
 	},
 ]);
+
+export const itemVars = createThemeContract({
+	height: null,
+	translate: null,
+});
+
+export const item = uiStyle({
+	position: "absolute",
+	top: "0",
+	left: "0",
+	width: "100%",
+	height: itemVars.height,
+	transform: `translateY(${itemVars.translate})`,
+});

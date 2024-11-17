@@ -1,5 +1,8 @@
 import { uiStyle } from "@/helpers/style";
 
+export const HEADER_HEIGHT = 48;
+export const ROW_HEIGHT = 30;
+
 export const root = uiStyle({});
 
 export const header = uiStyle({
@@ -9,7 +12,9 @@ export const header = uiStyle({
 	alignItems: "center",
 	gap: "24px",
 
-	padding: "8px",
+	height: `${HEADER_HEIGHT}px`,
+
+	padding: "0 8px",
 
 	backgroundColor: "rgba(0, 0, 0, 0.15)",
 });
@@ -26,7 +31,7 @@ export const row = uiStyle({
 	justifyContent: "stretch",
 	alignItems: "center",
 
-	minHeight: "30px",
+	height: `${ROW_HEIGHT}px`,
 
 	selectors: {
 		"&:nth-child(2n + 1)": {
@@ -58,5 +63,9 @@ export const value = uiStyle([
 		flex: "0 0 80%",
 
 		borderLeft: "1px solid rgba(0, 0, 0, 0.1)",
+
+		overflowX: "hidden",
+		whiteSpace: "nowrap",
+		textOverflow: "ellipsis",
 	},
 ]);

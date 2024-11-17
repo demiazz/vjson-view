@@ -1,11 +1,10 @@
 import { useCallback, useState } from "react";
 
+import { JsonView } from "@/helpers/JsonView";
 import { openFile } from "@/helpers/openFile";
 import { saveFile } from "@/helpers/saveFile";
 
 import { useAlert } from "@/ui/UiAlert";
-
-import { JsonView } from "../JsonView";
 
 type Result = {
 	view: Maybe<JsonView>;

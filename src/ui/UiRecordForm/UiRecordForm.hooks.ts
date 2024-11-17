@@ -2,10 +2,11 @@ import { useMemo, useCallback, useState, useEffect } from "react";
 
 import { useWatch } from "@/hooks/useWatch";
 
+import { useConfirm } from "@/ui/UiConfirmation";
 import { UiModalAction } from "@/ui/UiModal";
 
 import { ChangeFieldHandler, Fields } from "./UiRecordForm.types";
-import { parseRecord } from "./UiRecordForm.helpers";
+import { areFieldsChanged, parseRecord } from "./UiRecordForm.helpers";
 
 type Options = {
 	record: Maybe<JsonRecord>;
@@ -27,6 +28,8 @@ type Result = {
 };
 
 export function useModal({ record, onCancel, onSubmit }: Options): Result {
+	const confirm = useConfirm();
+
 	const [fields, setFields] = useState<Maybe<Fields>>(() =>
 		parseRecord(record),
 	);
@@ -68,11 +71,26 @@ export function useModal({ record, onCancel, onSubmit }: Options): Result {
 		setIsOpened(false);
 	}, [fields, onSubmit]);
 
-	const handleCancel = useCallback(() => {
-		onCancel();
+	const handleCancel = useCallback(async () => {
+		const hasChanges =
+			record != null && fields != null
+				? areFieldsChanged(record, fields)
+				: true;
 
-		setIsOpened(false);
-	}, [onCancel]);
+		const proceed = hasChanges
+			? await confirm({
+					message:
+						"Some of fields has been changed. Are you want to ignore changes?",
+					title: "Are you sure?",
+				})
+			: true;
+
+		if (proceed) {
+			onCancel();
+
+			setIsOpened(false);
+		}
+	}, [fields, record, onCancel, confirm]);
 
 	const handleClosed = useCallback(() => {
 		setFields(null);
@@ -96,6 +114,9 @@ export function useModal({ record, onCancel, onSubmit }: Options): Result {
 		[handleSubmit, handleCancel],
 	);
 
+	// NOTE: We provide "non async" function to external code because async
+	//       nature of function is used inside that hook only right now.
+	/* eslint-disable @typescript-eslint/no-misused-promises */
 	return {
 		isOpened,
 
@@ -106,4 +127,5 @@ export function useModal({ record, onCancel, onSubmit }: Options): Result {
 		onClose: handleCancel,
 		onClosed: handleClosed,
 	};
+	/* eslint-enable */
 }
