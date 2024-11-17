@@ -7,6 +7,8 @@ import svgr from "@svgr/rollup";
 const rootDir = import.meta.dirname;
 
 export default {
+	base: "./",
+
 	plugins: [
 		svgr({
 			svgo: true,
