@@ -73,7 +73,7 @@ export function parseRecord(record: Maybe<JsonRecord>): Maybe<Fields> {
 }
 
 export function areFieldsChanged(initial: JsonRecord, next: Fields): boolean {
-	return Object.entries(next).some(([name, value]) => {
+	return Object.entries(next).some(([name, { value }]) => {
 		const targetValue = value instanceof Date ? value.toISOString() : value;
 
 		return initial[name] !== targetValue;

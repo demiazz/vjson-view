@@ -97,6 +97,7 @@ export function useModal({ record, onCancel, onSubmit }: Options): Result {
 					message:
 						"Some of fields has been changed. Are you want to ignore changes?",
 					title: "Are you sure?",
+					okLabel: "Proceed",
 				})
 			: true;
 

@@ -88,6 +88,13 @@ export const control = styleVariants({
 		margin: "4px 0 0 0",
 
 		cursor: "pointer",
+
+		selectors: {
+			"&:focus": {
+				outlineOffset: "0",
+				outline: `2px solid ${theme.colors.control.focus}`,
+			},
+		},
 	}),
 
 	input: [
