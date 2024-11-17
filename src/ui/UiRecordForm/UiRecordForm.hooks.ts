@@ -46,7 +46,9 @@ export function useModal({ record, onCancel, onSubmit }: Options): Result {
 	);
 
 	useEffect(() => {
-		setFields(parseRecord(record));
+		if (record != null) {
+			setFields(parseRecord(record));
+		}
 	}, [record]);
 
 	const [isOpened, setIsOpened] = useState(fields != null);
