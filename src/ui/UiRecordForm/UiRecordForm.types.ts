@@ -1,7 +1,7 @@
 export type InputRecord = {
 	index: number;
 
-	content: JSONRecord;
+	content: JsonRecord;
 };
 
 export type BooleanField = {

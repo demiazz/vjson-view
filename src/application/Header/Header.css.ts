@@ -53,7 +53,10 @@ export const indicator = style({
 });
 
 export const actions = style({
+	flex: "1 1 auto",
+
 	display: "flex",
 	flexDirection: "row",
+	justifyContent: "flex-end",
 	gap: "8px",
 });

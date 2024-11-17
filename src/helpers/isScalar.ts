@@ -1,4 +1,4 @@
-export function isScalar(value: JSONValue): value is boolean | number | string {
+export function isScalar(value: JsonValue): value is boolean | number | string {
 	if (value == null) {
 		return false;
 	}

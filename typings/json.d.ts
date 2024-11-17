@@ -1,12 +1,17 @@
-type JSONValue =
+type JsonValue =
 	| null
 	| string
 	| number
 	| boolean
-	| { [x: string]: JSONValue }
-	| JSONValue[];
+	| { [x: string]: JsonValue }
+	| JsonValue[];
 
-type JSONRecord = Exclude<
-	JSONValue,
-	boolean | null | number | string | JSONValue[]
+type JsonRecord = Exclude<
+	JsonValue,
+	boolean | null | number | string | JsonValue[]
 >;
+
+type JsonFile = {
+	name: string;
+	content: JsonRecord[];
+};

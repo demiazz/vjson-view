@@ -10,7 +10,7 @@ export function parseDate(value: string): Maybe<Date> {
 	return Number.isNaN(date.getDate()) ? null : date;
 }
 
-function parseField(name: string, value: JSONValue): Maybe<Field> {
+function parseField(name: string, value: JsonValue): Maybe<Field> {
 	if (name === "id" || !isScalar(value)) {
 		return null;
 	}
@@ -52,7 +52,7 @@ function parseField(name: string, value: JSONValue): Maybe<Field> {
 	return { type, value };
 }
 
-export function parseRecord(record: Maybe<JSONRecord>): Maybe<Fields> {
+export function parseRecord(record: Maybe<JsonRecord>): Maybe<Fields> {
 	if (record == null) {
 		return null;
 	}

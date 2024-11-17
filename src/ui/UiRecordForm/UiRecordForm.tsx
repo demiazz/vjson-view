@@ -12,7 +12,7 @@ type Props = {
 	input: InputRecord;
 
 	onCancel: () => void;
-	onSubmit: (index: number, next: JSONRecord) => void;
+	onSubmit: (index: number, next: JsonRecord) => void;
 };
 
 export const UiRecordForm: FC<Props> = ({ input, onCancel, onSubmit }) => {

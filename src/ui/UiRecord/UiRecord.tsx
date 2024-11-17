@@ -9,7 +9,7 @@ import * as styles from "./UiRecord.css";
 type Props = {
 	index: number;
 	onEdit: (index: number) => void;
-	record: JSONRecord;
+	record: JsonRecord;
 };
 
 export const UiRecord: FC<Props> = memo(({ index, onEdit, record }) => {

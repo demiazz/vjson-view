@@ -10,7 +10,7 @@ import { parseRecord } from "./UiRecordForm.helpers";
 type Options = {
 	input: InputRecord;
 
-	onSubmit: (index: number, next: JSONRecord) => void;
+	onSubmit: (index: number, next: JsonRecord) => void;
 	onCancel: () => void;
 };
 
@@ -52,7 +52,7 @@ export function useModal({ input, onCancel, onSubmit }: Options): Result {
 			return;
 		}
 
-		const next: JSONRecord = {};
+		const next: JsonRecord = {};
 
 		for (const [name, field] of Object.entries(fields)) {
 			next[name] =
@@ -62,13 +62,13 @@ export function useModal({ input, onCancel, onSubmit }: Options): Result {
 		onSubmit(input.index, next);
 
 		setIsOpened(false);
-	}, [input.index, fields]);
+	}, [input.index, fields, onSubmit]);
 
 	const handleCancel = useCallback(() => {
 		onCancel();
 
 		setIsOpened(false);
-	}, []);
+	}, [onCancel]);
 
 	const handleClosed = useCallback(() => {
 		setFields(null);

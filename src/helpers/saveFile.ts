@@ -1,4 +1,4 @@
-export function saveFile(name: string, content: JSONValue): void {
+export function saveFile(name: string, content: JsonValue): void {
 	const blob = new Blob([JSON.stringify(content)], {
 		type: "application/json",
 	});
