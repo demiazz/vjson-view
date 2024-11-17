@@ -12,6 +12,10 @@ type Result = {
 
 	onDownload: () => void;
 	onUpload: () => void;
+
+	onEdit: (index: number) => void;
+	onCancel: () => void;
+	onSubmit: (record: JsonRecord) => void;
 };
 
 export function useJsonView(): Result {
@@ -41,6 +45,36 @@ export function useJsonView(): Result {
 		saveFile(view.name, view.content);
 	}, [view]);
 
+	const handleEdit = useCallback((index: number) => {
+		setView((current) => {
+			if (current == null) {
+				return current;
+			}
+
+			return current.startRecordEdit(index);
+		});
+	}, []);
+
+	const handleCancel = useCallback(() => {
+		setView((current) => {
+			if (current == null) {
+				return current;
+			}
+
+			return current.cancelRecordEdit();
+		});
+	}, []);
+
+	const handleSubmit = useCallback((record: JsonRecord) => {
+		setView((current) => {
+			if (current == null) {
+				return current;
+			}
+
+			return current.updateRecord(record);
+		});
+	}, []);
+
 	// NOTE: We provide "non async" function to external code because async
 	//       nature of function is used inside that hook only right now.
 	/* eslint-disable @typescript-eslint/no-misused-promises */
@@ -49,6 +83,10 @@ export function useJsonView(): Result {
 
 		onDownload: handleDownload,
 		onUpload: handleUpload,
+
+		onEdit: handleEdit,
+		onCancel: handleCancel,
+		onSubmit: handleSubmit,
 	};
 	/* eslint-enable */
 }

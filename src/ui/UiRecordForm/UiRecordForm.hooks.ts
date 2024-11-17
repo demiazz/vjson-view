@@ -1,16 +1,16 @@
-import { useMemo, useCallback, useState } from "react";
+import { useMemo, useCallback, useState, useEffect } from "react";
 
 import { useWatch } from "@/hooks/useWatch";
 
 import { UiModalAction } from "@/ui/UiModal";
 
-import { ChangeFieldHandler, Fields, InputRecord } from "./UiRecordForm.types";
+import { ChangeFieldHandler, Fields } from "./UiRecordForm.types";
 import { parseRecord } from "./UiRecordForm.helpers";
 
 type Options = {
-	input: InputRecord;
+	record: Maybe<JsonRecord>;
 
-	onSubmit: (index: number, next: JsonRecord) => void;
+	onSubmit: (next: JsonRecord) => void;
 	onCancel: () => void;
 };
 
@@ -26,10 +26,14 @@ type Result = {
 	onClosed: () => void;
 };
 
-export function useModal({ input, onCancel, onSubmit }: Options): Result {
+export function useModal({ record, onCancel, onSubmit }: Options): Result {
 	const [fields, setFields] = useState<Maybe<Fields>>(() =>
-		parseRecord(input.content),
+		parseRecord(record),
 	);
+
+	useEffect(() => {
+		setFields(parseRecord(record));
+	}, [record]);
 
 	const [isOpened, setIsOpened] = useState(fields != null);
 
@@ -59,10 +63,10 @@ export function useModal({ input, onCancel, onSubmit }: Options): Result {
 				field.value instanceof Date ? field.value.toISOString() : field.value;
 		}
 
-		onSubmit(input.index, next);
+		onSubmit(next);
 
 		setIsOpened(false);
-	}, [input.index, fields, onSubmit]);
+	}, [fields, onSubmit]);
 
 	const handleCancel = useCallback(() => {
 		onCancel();

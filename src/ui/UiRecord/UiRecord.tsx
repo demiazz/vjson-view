@@ -22,7 +22,7 @@ export const UiRecord: FC<Props> = memo(({ index, onEdit, record }) => {
 	const id = "id" in record && isScalar(record.id) ? record.id : null;
 
 	fields.push(
-		<div className={styles.header}>
+		<div className={styles.header} key="id">
 			<div className={styles.id}>{id}</div>
 			<UiButton onClick={handleEdit} variant="primary">
 				Edit

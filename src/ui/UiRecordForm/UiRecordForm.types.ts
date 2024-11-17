@@ -1,9 +1,3 @@
-export type InputRecord = {
-	index: number;
-
-	content: JsonRecord;
-};
-
 export type BooleanField = {
 	type: "boolean";
 	value: boolean;

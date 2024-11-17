@@ -15,3 +15,8 @@ type JsonFile = {
 	name: string;
 	content: JsonRecord[];
 };
+
+type JsonItem = {
+	index: number;
+	content: JsonRecord;
+};

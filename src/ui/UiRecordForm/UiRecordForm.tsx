@@ -4,20 +4,19 @@ import { UiModal } from "@/ui/UiModal";
 
 import { Field } from "./UiRecordForm.Field";
 import { useModal } from "./UiRecordForm.hooks";
-import { InputRecord } from "./UiRecordForm.types";
 
 import * as styles from "./UiRecordForm.css";
 
 type Props = {
-	input: InputRecord;
+	record: Maybe<JsonRecord>;
 
 	onCancel: () => void;
-	onSubmit: (index: number, next: JsonRecord) => void;
+	onSubmit: (next: JsonRecord) => void;
 };
 
-export const UiRecordForm: FC<Props> = ({ input, onCancel, onSubmit }) => {
+export const UiRecordForm: FC<Props> = ({ record, onCancel, onSubmit }) => {
 	const { actions, isOpened, onClose, onClosed, fields, onChangeField } =
-		useModal({ input, onCancel, onSubmit });
+		useModal({ record, onCancel, onSubmit });
 
 	return (
 		<UiModal
